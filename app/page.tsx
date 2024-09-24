@@ -25,8 +25,11 @@ export default function Page() {
   return (
     <>
       <div>
+        {UA?.length}
         {UA?.map((ua) => (
-          <p key={ua.deviceId}>{JSON.stringify(ua)}</p>
+          <p key={ua.deviceId}>
+            {ua.deviceId} {ua.width}x{ua.height} {ua.frameRate}fps
+          </p>
         ))}
       </div>
       <video

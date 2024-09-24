@@ -1,7 +1,5 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
-import UAParser from "ua-parser-js";
-
 export default function Page() {
   const ref = useRef<HTMLVideoElement>();
   const onStart = async () => {
@@ -10,7 +8,6 @@ export default function Page() {
     //     cameraId:
     //   }
     // }
-    const parser = new UAParser(window.navigator.userAgent);
     console.log(navigator.mediaDevices);
     const stream = await navigator.mediaDevices.getUserMedia({
       video: {

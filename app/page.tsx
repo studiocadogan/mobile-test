@@ -8,16 +8,17 @@ export default function Page() {
       video: {
         facingMode: "environment",
       },
+      audio: false,
     });
 
-    setUA(stream.getVideoTracks().map((track) => track.getSettings()));
+    setUA(stream.getVideoTracks().map((track) => track.getCapabilities()));
 
     if (ref.current) {
       ref.current.srcObject = stream;
     }
   };
 
-  const [UA, setUA] = useState<MediaTrackSettings[]>([{}]);
+  const [UA, setUA] = useState<MediaTrackCapabilities[]>([{}]);
   useEffect(() => {
     onStart();
   }, []);
@@ -26,11 +27,7 @@ export default function Page() {
     <>
       <div style={{ display: "flex", flexDirection: "column" }}>
         {UA?.length}
-        {UA?.map((ua) => (
-          <p key={ua.deviceId}>
-            {ua.deviceId} {ua.width}x{ua.height} {ua.frameRate}fps
-          </p>
-        ))}
+        {UA?.map((ua) => Object.values(ua).map((value) => <p>{value}</p>))}
       </div>
       <video
         style={{

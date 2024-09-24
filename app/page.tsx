@@ -24,11 +24,11 @@ export default function Page() {
 
   return (
     <>
-      {/* <div>
+      <div>
         {UA?.map((ua) => (
           <p key={ua.deviceId}>{JSON.stringify(ua)}</p>
         ))}
-      </div> */}
+      </div>
       <video
         style={{
           width: "100%",
@@ -36,8 +36,9 @@ export default function Page() {
         }}
         ref={ref}
         autoPlay
+        playsInline
         muted
-      />{" "}
+      />
     </>
   );
 }

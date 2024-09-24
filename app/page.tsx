@@ -31,7 +31,7 @@ export default function Page() {
           <div key={i}>
             {Object.entries(track).map(([key, value]) => (
               <div key={key}>
-                {key}: {value}
+                {key}: {JSON.stringify(value)}
               </div>
             ))}
           </div>

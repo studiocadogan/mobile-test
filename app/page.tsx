@@ -131,6 +131,7 @@ function visualizeEdges(
 
 export default function Page() {
   const ref = useRef<HTMLVideoElement>(null);
+  const [stateMsg, setMsg] = useState<Record<string, string>>({});
 
   async function analyzeCameraFoV() {
     try {
@@ -144,7 +145,9 @@ export default function Page() {
 
       // Step 2: Loop through each device and analyze
       for (const device of videoDevices) {
-        console.log(`Analyzing Device: ${device.label}`);
+        const setStateMsg = (msg: string) =>
+          setMsg((prev) => ({ ...prev, [device.deviceId]: msg }));
+        setStateMsg(`Analyzing Device: ${device.label}`);
 
         // Access the camera
         const stream = await navigator.mediaDevices.getUserMedia({
@@ -157,7 +160,7 @@ export default function Page() {
         ref.current!.srcObject = stream;
         await video.play();
 
-        console.log("video playing");
+        setStateMsg("video playing");
 
         // Wait for the video to start playing
 
@@ -176,14 +179,14 @@ export default function Page() {
         // Analyze the captured frame
         // (Here, you could add more advanced analysis for distortion or scene coverage)
         const imageData = ctx?.getImageData(0, 0, canvas.width, canvas.height);
-        console.log(
+        setStateMsg(
           `Captured Frame Dimensions: ${canvas.width}x${canvas.height}`
         );
 
         // Example heuristic: if image appears distorted, it might indicate a wide-angle lens
         // Placeholder for distortion detection logic:
         const isWideAngle = detectDistortionOrSceneCoverage(imageData!);
-        console.log(
+        setStateMsg(
           isWideAngle
             ? "Detected as Wide-Angle Lens"
             : "Not Detected as Wide-Angle"
@@ -205,6 +208,13 @@ export default function Page() {
 
   return (
     <>
+      <div>
+        {Object.entries(stateMsg).map(([key, value]) => (
+          <div key={key}>
+            {key}: {value}
+          </div>
+        ))}
+      </div>
       <video
         style={{
           width: "100%",

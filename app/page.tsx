@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 export default function Page() {
-  const ref = useRef<HTMLVideoElement>();
+  const ref = useRef<HTMLVideoElement>(null);
   const onStart = async () => {
     // const phoneMap = {
     //   iPhone: {

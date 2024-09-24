@@ -24,11 +24,11 @@ export default function Page() {
 
   return (
     <>
-      <div>
+      {/* <div>
         {UA?.map((ua) => (
           <p key={ua.deviceId}>{JSON.stringify(ua)}</p>
         ))}
-      </div>
+      </div> */}
       <video ref={ref} autoPlay muted />{" "}
     </>
   );

@@ -23,9 +23,9 @@ export default function Page() {
   }, []);
 
   return (
-    <pre>
+    <div>
       {JSON.stringify(UA)}
       <video ref={ref} autoPlay muted />{" "}
-    </pre>
+    </div>
   );
 }

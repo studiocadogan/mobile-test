@@ -28,12 +28,15 @@ export default function Page() {
         console.log(`Device: ${device.label}`);
         console.log(`Resolution: ${settings.width}x${settings.height}`);
 
+        const aspectRatio = settings.width! / settings.height!;
+
         // Heuristic: Check for specific resolution thresholds (adjust as needed)
-        if ((settings?.width ?? 0) >= 1920 && (settings?.height ?? 0) >= 1080) {
+        if (aspectRatio > 1.8) {
           setMsg((prev) => [
             ...prev,
             device.deviceId +
-              ": This device might be a wide-angle lens based on resolution.",
+              ": This device might be a wide-angle lens based on aspect ratio " +
+              aspectRatio,
           ]);
         } else {
           setMsg((prev) => [

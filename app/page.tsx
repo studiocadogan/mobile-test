@@ -27,7 +27,15 @@ export default function Page() {
     <>
       <div style={{ display: "flex", flexDirection: "column" }}>
         {UA?.length}
-        {UA?.map((ua) => Object.values(ua).map((value) => <p>{value}</p>))}
+        {UA.map((track, i) => (
+          <div key={i}>
+            {Object.entries(track).map(([key, value]) => (
+              <div key={key}>
+                {key}: {value}
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
       <video
         style={{

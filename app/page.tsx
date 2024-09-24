@@ -17,15 +17,19 @@ export default function Page() {
     }
   };
 
-  const [UA, setUA] = useState([{}]);
+  const [UA, setUA] = useState<MediaTrackSettings[]>([{}]);
   useEffect(() => {
     onStart();
   }, []);
 
   return (
-    <div>
-      {JSON.stringify(UA)}
+    <>
+      <div>
+        {UA?.map((ua) => (
+          <p key={ua.deviceId}>{JSON.stringify(ua)}</p>
+        ))}
+      </div>
       <video ref={ref} autoPlay muted />{" "}
-    </div>
+    </>
   );
 }

@@ -29,7 +29,15 @@ export default function Page() {
           <p key={ua.deviceId}>{JSON.stringify(ua)}</p>
         ))}
       </div> */}
-      <video ref={ref} autoPlay muted />{" "}
+      <video
+        style={{
+          width: "100%",
+          maxHeight: "100%",
+        }}
+        ref={ref}
+        autoPlay
+        muted
+      />{" "}
     </>
   );
 }

@@ -24,7 +24,7 @@ export default function Page() {
 
   return (
     <>
-      <div>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         {UA?.length}
         {UA?.map((ua) => (
           <p key={ua.deviceId}>
